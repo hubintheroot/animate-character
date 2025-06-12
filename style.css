@@ -1,0 +1,277 @@
+:root {
+  --ditto-main-color: #a868c0;
+}
+
+@keyframes wave {
+  from {
+    x: -400px;
+  }
+  to {
+    x: 0;
+  }
+}
+
+body {
+  position: relative;
+  cursor: url("./src/img/cursor-inject.png"), auto;
+
+  max-height: 100vh;
+  & h2 {
+    font-weight: 500;
+    word-break: keep-all;
+    font-size: 2em;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+  }
+
+  @media screen and (max-width: 1200px) {
+    & .ditto-body,
+    img,
+    h2 {
+      display: none;
+    }
+
+    & .ground::before {
+      content: "화면이 너무 좁아서 메타몽이 사라졌어요.";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      word-break: keep-all;
+      font-weight: 500;
+      font-size: 2em;
+    }
+  }
+}
+.place {
+  height: 50vh;
+  display: flex;
+  gap: 30px;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.place.ground {
+  align-items: flex-end;
+  /* background: #2a7b9b; */
+  background: linear-gradient(
+    180deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
+  border-bottom: 3px solid rgb(196, 183, 69);
+  box-sizing: border-box;
+  z-index: 20;
+}
+
+.place.water {
+  position: relative;
+  top: -10vh;
+  height: 60vh;
+  align-items: flex-start;
+  background-color: lightskyblue;
+  z-index: 10;
+}
+
+.ditto-body {
+  width: 240px;
+  height: 240px;
+  background-color: var(--ditto-main-color);
+  /* background: linear-gradient(135deg, #8f4fa3, #a868c0, #c58cd9); */
+
+  background: linear-gradient(135deg, #c58cd9, #a868c0, #8f4fa3);
+  border-radius: 60% 60% 50% 50% / 70% 70% 30% 30%;
+  position: relative;
+  clip-path: polygon(
+    9% 30%,
+    13% 28%,
+    19% 28%,
+    24% 30%,
+    28% 27%,
+    34% 21%,
+    40% 20%,
+    45% 22%,
+    50% 23%,
+    57% 22%,
+    64% 21%,
+    69% 25%,
+    71% 29%,
+    75% 33%,
+    80% 34%,
+    86% 35%,
+    91% 38%,
+    91% 43%,
+    89% 46%,
+    87% 51%,
+    86% 55%,
+    88% 59%,
+    92% 63%,
+    94% 67%,
+    94% 71%,
+    91% 75%,
+    87% 77%,
+    81% 77%,
+    75% 76%,
+    69% 77%,
+    64% 78%,
+    60% 80%,
+    54% 81%,
+    48% 81%,
+    41% 80%,
+    35% 79%,
+    30% 78%,
+    25% 75%,
+    17% 76%,
+    12% 76%,
+    6% 72%,
+    5% 69%,
+    5% 66%,
+    8% 62%,
+    10% 58%,
+    12% 55%,
+    14% 50%,
+    14% 46%,
+    11% 43%,
+    9% 40%,
+    8% 36%,
+    8% 32%
+  );
+}
+.ditto-body:has(img) {
+  all: unset;
+}
+.ditto-body > img {
+  width: 240px;
+  height: 240px;
+  aspect-ratio: 1/1;
+}
+
+.ditto-body [class$="-eye"] {
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 70px;
+}
+.ditto-body [class*="left"] {
+  left: 80px;
+}
+.ditto-body [class*="right"] {
+  right: 80px;
+}
+
+.ditto-body .ditto-mouth {
+  width: 60px;
+  height: 3px;
+  position: absolute;
+  background-color: #000;
+  top: 90px;
+  left: 90px;
+  border-radius: 32px;
+}
+
+.ditto-body.reflection {
+  transform: rotate(180deg) scaleX(-1) scale(0.9);
+}
+
+.ground .ditto-body {
+  &.real-1:hover {
+    & [class$="eye"] {
+      width: 5px;
+      height: 5px;
+    }
+    & [class*="left"] {
+      transform: translate(-5px, -10px);
+    }
+    & [class*="right"] {
+      transform: translate(-15px, -5px);
+    }
+    & .ditto-mouth {
+      top: 80px;
+      left: 80px;
+      height: 2px;
+      background-color: #000;
+      transform: rotate(190deg);
+    }
+    transform: skew(10deg, 5deg);
+  }
+  &.real-2:hover {
+    & [class$="eye"] {
+      width: 5px;
+      height: 5px;
+    }
+    & [class*="left"] {
+      transform: translate(10px, -10px);
+    }
+    & [class*="right"] {
+      transform: translate(-12px, -10px);
+    }
+    & .ditto-mouth {
+      top: 80px;
+      height: 2px;
+      background-color: #000;
+      transform: rotate(175deg);
+    }
+    transform: skew(-15deg, -10deg);
+  }
+  &.fake-1:hover {
+    transform: skew(-15deg, -10deg);
+  }
+  &.fake-2:hover {
+    transform: skew(10deg, 10deg);
+  }
+}
+
+.ditto-body.be-attacked {
+  &.real-1 {
+    & [class$="eye"] {
+      width: 5px;
+      height: 5px;
+    }
+    & [class*="left"] {
+      transform: translate(-5px, -10px);
+    }
+    & [class*="right"] {
+      transform: translate(-15px, -5px);
+    }
+    & .ditto-mouth {
+      top: 80px;
+      left: 80px;
+      height: 2px;
+      background-color: #000;
+      transform: rotate(190deg);
+    }
+    transform: rotate(180deg) scaleX(-1) skew(10deg, 5deg);
+  }
+  &.real-2 {
+    & [class$="eye"] {
+      width: 5px;
+      height: 5px;
+    }
+    & [class*="left"] {
+      transform: translate(10px, -10px);
+    }
+    & [class*="right"] {
+      transform: translate(-12px, -10px);
+    }
+    & .ditto-mouth {
+      top: 80px;
+      height: 2px;
+      background-color: #000;
+      transform: rotate(175deg);
+    }
+    transform: rotate(180deg) scaleX(-1) skew(-15deg, -10deg);
+  }
+  &.fake-1 {
+    transform: rotate(180deg) scaleX(-1) skew(-15deg, -10deg);
+  }
+  &.fake-2 {
+    transform: rotate(180deg) scaleX(-1) skew(10deg, 10deg);
+  }
+}

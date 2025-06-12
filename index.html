@@ -3,10 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
+"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <title>캐릭터</title>
+    <title>주사를 싫어하는 메타몽</title>
   </head>
   <body>
-    <div class="container"></div>
+    <!-- 땅 -->
+    <h2>메타몽에게 주사를 맞히세요!</h2>
+    <div class="place ground">
+      <div class="ditto-body real-1">
+        <div class="ditto-left-eye"></div>
+        <div class="ditto-right-eye"></div>
+        <div class="ditto-mouth"></div>
+      </div>
+
+      <div class="ditto-body real-2">
+        <div class="ditto-left-eye"></div>
+        <div class="ditto-right-eye"></div>
+        <div class="ditto-mouth"></div>
+      </div>
+
+      <div class="ditto-body fake-1">
+        <img src="src/img/real-ditto.png" alt="메타몽" />
+      </div>
+      <div class="ditto-body fake-2">
+        <img src="src/img/real-ditto.png" alt="메타몽" />
+      </div>
+    </div>
+    <!-- 물 -->
+    <div class="place water">
+      <div class="ditto-body real-1 reflection">
+        <div class="ditto-left-eye"></div>
+        <div class="ditto-right-eye"></div>
+        <div class="ditto-mouth"></div>
+      </div>
+      <div class="ditto-body real-2 reflection">
+        <div class="ditto-left-eye"></div>
+        <div class="ditto-right-eye"></div>
+        <div class="ditto-mouth"></div>
+      </div>
+      <div class="ditto-body fake-1 reflection">
+        <img src="src/img/real-ditto.png" alt="물에 반사된 메타몽" />
+      </div>
+      <div class="ditto-body fake-2 reflection">
+        <img src="src/img/real-ditto.png" alt="물에 반사된 메타몽" />
+      </div>
+    </div>
+
+    <script>
+      const ditto = document.querySelectorAll(".place.ground .ditto-body");
+      const reflection = document.querySelectorAll(".place.water .reflection");
+      console.log(ditto, reflection);
+
+      ditto.forEach((ditto, i) => {
+        ditto.addEventListener("mouseenter", () => {
+          reflection[i].classList.add("be-attacked");
+        });
+        ditto.addEventListener("mouseleave", () => {
+          reflection[i].classList.remove("be-attacked");
+        });
+      });
+    </script>
   </body>
 </html>
